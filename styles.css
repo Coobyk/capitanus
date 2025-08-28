@@ -1,0 +1,16 @@
+html, body {
+  background: transparent; /* Crucial for transparency */
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+  color: white;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* The blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For WebKit-based renderers */
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
