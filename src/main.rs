@@ -1,4 +1,4 @@
-use iced::widget::{Column, text};
+use iced::widget::{Column, Row, text};
 use iced::{Element, Sandbox, Settings};
 
 pub fn main() -> iced::Result {
@@ -55,13 +55,18 @@ impl Sandbox for Capitanus {
     }
 
     fn view(&self) -> Element<Self::Message> {
-        let scripts_list = self
-            .scripts
-            .iter()
-            // Start with an empty column and add scripts to it
-            .fold(Column::new(), |column, script| {
-                column.push(text(&script.name))
-            });
-        scripts_list.into()
+        const ITEMS_PER_ROW: usize = 4;
+        let mut content = Column::new().spacing(20);
+
+        for script_chunk in self.scripts.chunks(ITEMS_PER_ROW) {
+            let mut row = Row::new().spacing(20);
+
+            for script in script_chunk {
+                row = row.push(text(&script.name))
+            }
+            content = content.push(row);
+        }
+
+        content.into()
     }
 }
